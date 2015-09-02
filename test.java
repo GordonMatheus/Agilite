@@ -5,6 +5,6 @@ public class test {
 	
 	public test(int test){
 		this.test = test;
-		//gui
+		//coucou
 	}
 }
