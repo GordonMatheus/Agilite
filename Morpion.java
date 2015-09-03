@@ -4,31 +4,34 @@ public class Morpion extends Plateau {
 	static final int hauteur = 3;
 	static final int largeur = 3;
 	char[] petitMorpion = new char[hauteur*largeur];
+	boolean fini;
+	char gagnant;
 	
+	public char getGagnant() {
+		return gagnant;
+	}
+
+	public void setGagnant(char gagnant) {
+		this.gagnant = gagnant;
+	}
+
 	Morpion () {
 		for (int i = 0; i < hauteur*largeur; i++) {
 				this.petitMorpion[i] = ' ';
 		}
+		this.fini = false;
 	}
 	
-	/*public String toString() {
+	public String toString() {
 		String rep = "";
-		for (int i = 0; i < hauteur; i++) {
-			for (int j = 0; j < largeur; j++) {
-				if (j < largeur-1) {
-				rep += this.petitMorpion[i][j] + "|";
-				} else {
-					rep += this.petitMorpion[i][j];
-				}
-			}
-		if (i < hauteur -1) {
-			rep += "\n";
-			rep += "------";
-			rep += "\n";
+		for (int i = 0; i < hauteur * largeur; i++) {
+			rep += "|" + petitMorpion[i];
+			if (i == 2 || i == 5) {
+				rep += "|\n-------\n";
 			}
 		}
-		return rep;
-	}*/
+		return rep + "|\n";
+	}
 	
 	public void addChar(int num, Joueur j) {
 		if (this.petitMorpion[num] == ' ') {
@@ -39,20 +42,36 @@ public class Morpion extends Plateau {
 	public boolean isFini() {
 		char[] test = this.getPetitMorpion();
 			if (test[0] != ' ' && test[0] == test[3] && test [0] == test[6]) { // Ligne verticale de gauche
+				this.setFini(true);
+				this.setGagnant(test[0]);
 				return true;
 			} else if (test[0] != ' ' && test[0] == test[1] && test[0] == test[2]) { // Ligne horizontale du haut
+				this.setFini(true);
+				this.setGagnant(test[0]);
 				return true;
 			} else if (test[0] != ' ' && test[4] == test[0] && test[0] == test[8]) { // Ligne diagonale de haut gauche vers bas droite
+				this.setFini(true);
+				this.setGagnant(test[0]);
 				return true;
 			} else if (test[1] != ' ' && test[1] == test[4] && test[1] == test[7]) { // Ligne verticale du milieu
+				this.setFini(true);
+				this.setGagnant(test[1]);
 				return true;
 			} else if (test[2] != ' ' && test[2] == test[5] && test[2] == test[8]) { // Ligne verticale de droite
+				this.setFini(true);
+				this.setGagnant(test[2]);
 				return true;
 			} else if (test[6] != ' ' && test[6] == test[7] && test[6] == test[8]) { // Ligne horizontale du bas
+				this.setFini(true);
+				this.setGagnant(test[6]);
 				return true;
 			} else if (test[3] != ' ' && test[3] == test[4] && test[3] == test[5]) { // Ligne horizontale du milieu
+				this.setFini(true);
+				this.setGagnant(test[3]);
 				return true;
 			} else if (test[2] != ' ' && test[2] == test[4] && test[2] == test[6]) { // Derniere diago (haut droite -> bas gauche)
+				this.setFini(true);
+				this.setGagnant(test[2]);
 				return true;
 			} else {
 				return false;
@@ -60,6 +79,10 @@ public class Morpion extends Plateau {
 			
 	}
 	
+	public void setFini(boolean fini) {
+		this.fini = fini;
+	}
+
 	public char[] getPetitMorpion() {
 		return petitMorpion;
 	}
