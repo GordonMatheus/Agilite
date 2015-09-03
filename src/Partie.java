@@ -40,7 +40,7 @@ public class Partie {
 	}
 	
 	public void tour(Joueur j, BigMorpion m) {
-		if( last == -1 || m.getTotal()[last].isFinished())
+		if( last == -1 || m.getTotal()[last].isFini())
 			last = choixPlateau();
 		
 		int choix = choixCase(last);
