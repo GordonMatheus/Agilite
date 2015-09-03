@@ -1,11 +1,15 @@
+import java.util.Scanner;
+
 
 public class Joueur {
 	char marque;
 	String nom;
+
+	private Scanner sc;
 	
-	Joueur (String name, char m) {
-		this.nom = name;
+	Joueur (char m) {
 		this.marque = m;
+		sc = new Scanner(System.in);
 	}
 		
 	public char getMarque() {
@@ -22,6 +26,11 @@ public class Joueur {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+	public void chooseName() {
+		System.out.println("choisir un nom pour le joueur au pion " + this.marque);
+		setNom(sc.nextLine());
 	}
 	
 }
