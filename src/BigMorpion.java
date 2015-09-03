@@ -11,16 +11,16 @@ public class BigMorpion extends Plateau {
 	}
 	
 	public String toString() {
-		String rep = "";
+		String rep = "==================\n";
 		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++){
-				rep += total[i].getChar();
-			}
+				rep += total[i].toString();
 			
-			if ( i == 3 || i == 6) {
+			if (i%3 == 2) {
 				rep += "\n";
-				rep += "------------------";
+				rep += "==================";
 				rep += "\n";		
+			} else {
+				rep += "[]";
 			}
 		}
 		return rep;
@@ -37,6 +37,5 @@ public class BigMorpion extends Plateau {
 	public static int getNbmorpion() {
 		return nbMorpion;
 	}
-	
 	
 }
