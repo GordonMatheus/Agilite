@@ -1,6 +1,7 @@
 
 public class BigMorpion extends Plateau {
 	Morpion[] total;
+	char gagnant;
 	static final int nbMorpion = 9;
 	
 	BigMorpion() {
@@ -13,30 +14,42 @@ public class BigMorpion extends Plateau {
 	public boolean isFini(){
 		Morpion[] t = this.getTotal();
 		if(t[0].isFini() && t[0].getGagnant() == t[1].getGagnant() && t[2].getGagnant() == t[0].getGagnant()){ //horinzontale haut
-		return true;
+			gagnant = t[0].getGagnant();
+			return true;
 		}
 		else if(t[0].isFini() && t[0].getGagnant() == t[3].getGagnant() && t[6].getGagnant() == t[0].getGagnant()){ // verticale gauche
+			gagnant = t[0].getGagnant();
 			return true;
 		}
 		else if(t[1].isFini() && t[1].getGagnant() == t[4].getGagnant() && t[7].getGagnant() == t[1].getGagnant()){ // verticale milieu
+			gagnant = t[1].getGagnant();
 			return true;
 		}
 		else if(t[2].isFini() && t[2].getGagnant() == t[5].getGagnant() && t[8].getGagnant() == t[2].getGagnant()){ // verticale droite
+			gagnant = t[2].getGagnant();
 			return true;
 		}
 		else if(t[3].isFini() && t[3].getGagnant() == t[4].getGagnant() && t[5].getGagnant() == t[3].getGagnant()){ // horizon milieu
+			gagnant = t[3].getGagnant();
 			return true;
 		}
 		else if(t[6].isFini() && t[6].getGagnant() == t[7].getGagnant() && t[8].getGagnant() == t[6].getGagnant()){ // horizon bas
+			gagnant = t[6].getGagnant();
 			return true;
 		}
 		else if(t[0].isFini() && t[0].getGagnant() == t[4].getGagnant() && t[8].getGagnant() == t[0].getGagnant()){ // diago haut bas
+			gagnant = t[0].getGagnant();
 			return true;
 		}
 		else if(t[2].isFini() && t[2].getGagnant() == t[4].getGagnant() && t[6].getGagnant() == t[2].getGagnant()){ // diago bas haut
+			gagnant = t[2].getGagnant();
 			return true;
 		}
-		else 
+		else if(isRempli()) {
+			gagnant = 'N';
+			return true;
+		}
+		else
 			return false;
 	}	
 	
@@ -62,6 +75,10 @@ public class BigMorpion extends Plateau {
 
 	public static int getNbmorpion() {
 		return nbMorpion;
+	}
+	
+	public char getWinner() {
+		return gagnant;
 	}
 
 	public String afficherLigne (int big, int small) {
