@@ -63,6 +63,30 @@ public class BigMorpion extends Plateau {
 	public static int getNbmorpion() {
 		return nbMorpion;
 	}
+
+	public String afficherLigne (int big, int small) {
+		String s = "";
+		Morpion[] t = this.getTotal();
+		if (small == 0) {
+		s += t[big].getChar(0) + "|" + t[big].getChar(1) + "|" + t[big].getChar(2) + " || " + t[big+1].getChar(0) + "|" + t[big+1].getChar(1) + "|" + t[big+1].getChar(2) + " || " + t[big+2].getChar(0) + "|" + t[big+2].getChar(1) + "|" + t[big+2].getChar(2) + " ||";
+		} else if (small == 1) {
+			s += t[big].getChar(3) + "|" + t[big].getChar(4) + "|" + t[big].getChar(5) + " || " + t[big+1].getChar(3) + "|" + t[big+1].getChar(4) + "|" + t[big+1].getChar(5) + " || " + t[big+2].getChar(3) + "|" + t[big+2].getChar(4) + "|" + t[big+2].getChar(5) + " ||";
+		} else if (small == 2) {
+			s += t[big].getChar(6) + "|" + t[big].getChar(7) + "|" + t[big].getChar(8) + " || " + t[big+1].getChar(6) + "|" + t[big+1].getChar(7) + "|" + t[big+1].getChar(8) + " || " + t[big+2].getChar(6) + "|" + t[big+2].getChar(7) + "|" + t[big+2].getChar(8) + " ||";
+		}
+		return s;
+	}
+	
+	public String toString() {
+		String s = "--------------------------\n";
+		for (int i = 0; i < 9; i= i+3) {
+			for (int j = 0; j < 3; j++) {
+				s += afficherLigne(i,j) + "\n";
+			}
+			s+= "--------------------------\n";
+		}
+		return s;
+	}
 	
 	
 }
