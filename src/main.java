@@ -15,6 +15,9 @@ public class main {
 		Partie p = new Partie();
 		Joueur j1 = new Joueur('X');
 		j1.chooseName();
+		
+		//TODO choisir VS / IA
+		
 		Joueur j2 = new Joueur('O');
 		j2.chooseName();
 
@@ -28,9 +31,10 @@ public class main {
 		if (winner == 'N')
 			System.out.println("égalité");
 		else if (winner == j1.getMarque())
-			System.out.println("Le joueur " + j1.getNom() + "a gagné");
-		else
-			System.out.println("Le joueur " + j2.getNom() + "a gagné");
-
+			System.out.println("Le joueur " + j1.getNom() + " a gagné");
+		else if (winner == j2.getMarque())
+			System.out.println("Le joueur " + j2.getNom() + " a gagné");
+		else 
+			System.out.println("erreur");
 	}
 }
