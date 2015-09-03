@@ -39,20 +39,22 @@ public class Partie {
 	}
 
 	public int choixCase(int plateau) {
-		System.out.println("Vous jouez sur le morpion " + plateau + ""
+		System.out.println("Vous jouez sur le morpion " + (plateau + 1) + ""
 				+ "\nSur quelle case voulez-vous placer votre pion ?\n");
 		return parse();
 	}
 
 	public void tour(Joueur j) {
-		System.out.println("Tour du joueur " + j.getNom());
+		int choix;
+		do {
+			System.out.println("Tour du joueur " + j.getNom());
+			if (last == -1 || m.getTotal()[last].isFini())
+				last = choixPlateau();
 
-		if (last == -1 || m.getTotal()[last].isFini())
-			last = choixPlateau();
-
-		int choix = choixCase(last);
-		m.getTotal()[last].addChar(choix, j);
-		last = choix;
+			choix = choixCase(last);
+		
+		} while (!m.getTotal()[last].addChar(choix, j));
+			last = choix;
 	}
 
 	public void start(Joueur j1, Joueur j2) {
@@ -65,9 +67,9 @@ public class Partie {
 			}
 		}
 	}
-	
+
 	public char checkWinner() {
-			return m.getWinner();
+		return m.getWinner();
 	}
 
 }
