@@ -1,22 +1,21 @@
 import java.util.Random;
 
-
 public class IA extends Joueur {
 
-	IA(String name, char m) {
-		super(name, m);
+	IA(char m) {
+		super(m);
 	}
-	
-	public int choixCase (int numMorpion, Morpion  t) {
+
+	public int choixCase() {
 		Random rand = new Random();
 		int x = rand.nextInt(9);
-		while (t.getChar(x) != ' ') {
-			x = rand.nextInt(9);
-		}
-		t.addChar(x, this);
 		return x;
-		}
-
-
 	}
-	
+
+	public int choixPlateau() {
+		Random rand = new Random();
+		int x = rand.nextInt(9);
+		return x;
+	}
+
+}
