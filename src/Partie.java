@@ -56,6 +56,19 @@ public class Partie {
 		} while (!m.getTotal()[last].addChar(choix, j));
 			last = choix;
 	}
+	
+	public void tourIA(IA ia) {
+		int choix;
+		do {
+			System.out.println("Tour de l'IA");
+			if (last == -1 || m.getTotal()[last].isFini())
+				last = ia.choixPlateau();
+
+			choix = ia.choixCase();
+		
+		} while (!m.getTotal()[last].addChar(choix, ia));
+			last = choix;
+	}
 
 	public void start(Joueur j1, Joueur j2) {
 		while (!m.isFini()) {
@@ -68,6 +81,17 @@ public class Partie {
 		}
 	}
 
+	public void startIA(Joueur j1, IA ia) {
+		while (!m.isFini()) {
+			System.out.println(m.toString());
+			tour(j1);
+			if (!m.isFini()) {
+				System.out.println(m.toString());
+				tourIA(ia);
+			}
+		}
+	}
+	
 	public char checkWinner() {
 		return m.getWinner();
 	}
