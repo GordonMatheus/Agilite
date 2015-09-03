@@ -33,10 +33,12 @@ public class Morpion extends Plateau {
 		return rep + "|\n";
 	}
 	
-	public void addChar(int num, Joueur j) {
+	public boolean addChar(int num, Joueur j) {
 		if (this.petitMorpion[num] == ' ') {
 			this.petitMorpion[num] = j.getMarque();
-		}
+			return true;
+		} else 
+			return false;
 	}
 	
 	public boolean isFini() {
@@ -74,7 +76,15 @@ public class Morpion extends Plateau {
 				this.setGagnant(test[2]);
 				return true;
 			} else {
-				return false;
+				if(isRempli()) {
+					for(int i = 0; i < hauteur * largeur; i ++) {
+						petitMorpion[i] = 'N';
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
 			}
 			
 	}
@@ -88,7 +98,6 @@ public class Morpion extends Plateau {
 		}
 		return true;	
 	}
-	
 	
 	public void setFini(boolean fini) {
 		this.fini = fini;
