@@ -37,18 +37,27 @@ public class Morpion extends Plateau {
 	}
 	
 	public boolean isFini() {
-		char[][] test = this.getPetitMorpion();
-		if (test[0] != ' ' && test[0] == test[0][1] && test [0][2] == test[0][1]) { // Ligne verticale de gauche
-			return true;
-		} else if (test[0][0] != ' ' && test[0][0] == test[1][0] && test[0][0] == test[2][0]) { // Ligne horizontale du haut
-			return true;
-		} else if (test[0][0] != ' ' && test[0][0] == test[1][1] && test[0][0] == test[2][2]) { // Ligne diagonale de haut gauche vers bas droite
-			return true;
-		} else if (test[0][1] != ' ' && test[1][0] == test[1][1] && test[1][0] == test[1][2]) { // Ligne verticale du milieu
-			return true;
-		} else if (test[2][0] != ' ' && test[2][0] == test[2][1] && test[2][0] == test[2][2]) { // Ligne verticale de droite
-			return true;
-		} 
+		char[] test = this.getPetitMorpion();
+			if (test[0] != ' ' && test[0] == test[3] && test [0] == test[6]) { // Ligne verticale de gauche
+				return true;
+			} else if (test[0] != ' ' && test[0] == test[1] && test[0] == test[2]) { // Ligne horizontale du haut
+				return true;
+			} else if (test[0] != ' ' && test[4] == test[0] && test[0] == test[8]) { // Ligne diagonale de haut gauche vers bas droite
+				return true;
+			} else if (test[1] != ' ' && test[1] == test[4] && test[1] == test[7]) { // Ligne verticale du milieu
+				return true;
+			} else if (test[2] != ' ' && test[2] == test[5] && test[2] == test[8]) { // Ligne verticale de droite
+				return true;
+			} else if (test[6] != ' ' && test[6] == test[7] && test[6] == test[8]) { // Ligne horizontale du bas
+				return true;
+			} else if (test[3] != ' ' && test[3] == test[4] && test[3] == test[5]) { // Ligne horizontale du milieu
+				return true;
+			} else if (test[2] != ' ' && test[2] == test[4] && test[2] == test[6]) { // Derniere diago (haut droite -> bas gauche)
+				return true;
+			} else {
+				return false;
+			}
+			
 	}
 	
 	public char[] getPetitMorpion() {
