@@ -1,3 +1,5 @@
+package morpion;
+
 import java.util.Random;
 
 public class IA extends Joueur {

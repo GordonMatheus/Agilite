@@ -1,6 +1,7 @@
-public class main {
-	public static void main(String[] args) {
+package morpion;
 
+public class main {
+	public main() {
 		System.out
 				.println("Bonjour, bienvenue dans Mega Morpion \n"
 						+ "Le but du jeu est de gagner 3 petits morpions alignés dans le grand plateau pour gagner le grand morpion \n"
@@ -11,17 +12,16 @@ public class main {
 						+ "Si un morpion a été rempli mais qu'il n'y a pas de gagnant (match nul), il sera rempli de N\n"
 						+ "Si le joueur ne peut pas jouer sur le morpion assigné par le joueur précédent, car celui ci est plein \n"
 						+ "alors, il devra choisir le morpion sur lequel il veut jouer\n");
-		System.out.println("L'ordinateur vous dira dans quel morpion jouer. Vous devrez entrer un num�ro entre 1 et 9, les cases se situeront selon ce dessin: \n" + 
-				" 1 | 2 | 3 \n" +
-				" 4 | 5 | 6 \n" + 
-				" 7 | 8 | 9 \n");		
+		System.out
+				.println("L'ordinateur vous dira dans quel morpion jouer. Vous devrez entrer un num�ro entre 1 et 9, les cases se situeront selon ce dessin: \n"
+						+ " 1 | 2 | 3 \n" + " 4 | 5 | 6 \n" + " 7 | 8 | 9 \n");
 
 		Partie p = new Partie();
 		Joueur j1 = new Joueur('X');
 		j1.chooseName();
-		
-		//TODO choisir VS / IA
-		
+
+		// TODO choisir VS / IA
+
 		Joueur j2 = new Joueur('O');
 		j2.chooseName();
 
@@ -38,7 +38,7 @@ public class main {
 			System.out.println("Le joueur " + j1.getNom() + " a gagné");
 		else if (winner == j2.getMarque())
 			System.out.println("Le joueur " + j2.getNom() + " a gagné");
-		else 
+		else
 			System.out.println("erreur");
 	}
 }
