@@ -15,8 +15,7 @@ public class BigMorpion {
 	public boolean isFini() {
 		Morpion[] t = this.getTotal();
 		if (t[0].isFini() && t[0].getGagnant() == t[1].getGagnant()
-				&& t[2].getGagnant() == t[0].getGagnant()) { // horinzontale
-																// haut
+				&& t[2].getGagnant() == t[0].getGagnant()) { // horinzontale  haut
 			gagnant = t[0].getGagnant();
 			return true;
 		} else if (t[0].isFini() && t[0].getGagnant() == t[3].getGagnant()

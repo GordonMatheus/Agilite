@@ -1,59 +1,24 @@
 package morpion;
 
-import java.util.Scanner;
-
 public class Partie {
 
 	BigMorpion m = new BigMorpion();
 	private int last;
-	private Scanner sc;
 
 	public Partie() {
 		this.last = -1;
-		sc = new Scanner(System.in);
 	}
 
-	public String saisie() {
-		String str = sc.nextLine();
-		return str;
-	}
-
-	public int parse() {
-		int i = -1;
-		while (i < 1 || i > 9) {
-			String s = saisie();
-			try {
-				i = Integer.parseInt(s);
-			} catch (Exception e) {
-				System.out.println("saisir un entier");
-			}
-			if (i < 1 || i > 9) {
-				System.out.println("saisir un entier compris entre 1 et 9");
-			}
-		}
-		return --i;
-	}
-
-	public int choixPlateau() {
-		System.out
-				.println("Choississez le plateau sur lequel vous souhaitez placer votre pion");
-		return parse();
-	}
-
-	public int choixCase(int plateau) {
-		System.out.println("Vous jouez sur le morpion " + (plateau + 1) + ""
-				+ "\nSur quelle case voulez-vous placer votre pion ?\n");
-		return parse();
-	}
+	
 
 	public void tour(Joueur j) {
 		int choix;
 		do {
 			System.out.println("Tour du joueur " + j.getNom());
 			if (last == -1 || m.getTotal()[last].isFini())
-				last = choixPlateau();
+				last = j.choixPlateau();
 
-			choix = choixCase(last);
+			choix = j.choixCase(last);
 		
 		} while (!m.getTotal()[last].addChar(choix, j));
 			last = choix;
@@ -73,6 +38,7 @@ public class Partie {
 	}
 
 	public void start(Joueur j1, Joueur j2) {
+		System.out.println("Début de la partie :  " + j1.getNom() +" VS " + j2.getNom());
 		while (!m.isFini()) {
 			System.out.println(m.toString());
 			tour(j1);
@@ -81,9 +47,11 @@ public class Partie {
 				tour(j2);
 			}
 		}
+		System.out.println("Fin de la partie \n");
 	}
 
 	public void startIA(Joueur j1, IA ia) {
+		System.out.println("Début de la partie :  " + j1.getNom() +" VS IA");
 		while (!m.isFini()) {
 			System.out.println(m.toString());
 			tour(j1);
@@ -92,10 +60,17 @@ public class Partie {
 				tourIA(ia);
 			}
 		}
+		System.out.println("Fin de la partie");
 	}
 	
-	public char checkWinner() {
-		return m.getWinner();
+	public void checkWinner(Joueur j1, Joueur j2) {
+		char winner = m.getWinner();
+		if (winner == 'N')
+			System.out.println("égalité");
+		else if (winner == j1.getMarque())
+			System.out.println("Le joueur " + j1.getNom() + " a gagné");
+		else if (winner == j2.getMarque())
+			System.out.println("Le joueur " + j2.getNom() + " a gagné");
 	}
 
 }
