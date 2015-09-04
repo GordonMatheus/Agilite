@@ -9,8 +9,6 @@ public class Partie {
 		this.last = -1;
 	}
 
-	
-
 	public void tour(Joueur j) {
 		int choix;
 		do {
@@ -19,26 +17,27 @@ public class Partie {
 				last = j.choixPlateau();
 
 			choix = j.choixCase(last);
-		
+
 		} while (!m.getTotal()[last].addChar(choix, j));
-			last = choix;
+		last = choix;
 	}
-	
+
 	public void tourIA(IA ia) {
 		int choix;
 		do {
 			System.out.println("Tour de l'IA");
 			if (last == -1 || m.getTotal()[last].isFini())
-				last = ia.choixPlateau();
+				last = ia.choixPlateauRandom();
 
-			choix = ia.choixCase();
-		
+			choix = ia.choixCaseRandom();
+
 		} while (!m.getTotal()[last].addChar(choix, ia));
-			last = choix;
+		last = choix;
 	}
 
 	public void start(Joueur j1, Joueur j2) {
-		System.out.println("Début de la partie :  " + j1.getNom() +" VS " + j2.getNom());
+		System.out.println("Début de la partie :  " + j1.getNom() + " VS "
+				+ j2.getNom());
 		while (!m.isFini()) {
 			System.out.println(m.toString());
 			tour(j1);
@@ -47,11 +46,11 @@ public class Partie {
 				tour(j2);
 			}
 		}
-		System.out.println("Fin de la partie \n");
+		System.out.println("Fin de la partie");
 	}
 
 	public void startIA(Joueur j1, IA ia) {
-		System.out.println("Début de la partie :  " + j1.getNom() +" VS IA");
+		System.out.println("Début de la partie :  " + j1.getNom() + " VS IA");
 		while (!m.isFini()) {
 			System.out.println(m.toString());
 			tour(j1);
@@ -60,9 +59,10 @@ public class Partie {
 				tourIA(ia);
 			}
 		}
+		System.out.println(m.toString());
 		System.out.println("Fin de la partie");
 	}
-	
+
 	public void checkWinner(Joueur j1, Joueur j2) {
 		char winner = m.getWinner();
 		if (winner == 'N')

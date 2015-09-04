@@ -8,13 +8,13 @@ public class IA extends Joueur {
 		super(m);
 	}
 
-	public int choixCase() {
+	public int choixCaseRandom() {
 		Random rand = new Random();
 		int x = rand.nextInt(9);
 		return x;
 	}
 
-	public int choixPlateau() {
+	public int choixPlateauRandom() {
 		Random rand = new Random();
 		int x = rand.nextInt(9);
 		return x;

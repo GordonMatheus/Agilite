@@ -8,7 +8,7 @@ public class Joueur {
 
 	private Scanner sc;
 
-	Joueur(char m) {
+	public Joueur(char m) {
 		this.marque = m;
 		sc = new Scanner(System.in);
 	}
