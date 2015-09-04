@@ -29,7 +29,7 @@ public class Partie {
 			if (last == -1 || m.getTotal()[last].isFini())
 				last = ia.choixPlateauRandom();
 
-			choix = ia.choixCaseRandom();
+			choix = ia.choixCaseMorpionSimple(m.getTotal()[last]);
 
 		} while (!m.getTotal()[last].addChar(choix, ia));
 		last = choix;
