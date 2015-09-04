@@ -11,6 +11,10 @@ public class main {
 						+ "Si un morpion a été rempli mais qu'il n'y a pas de gagnant (match nul), il sera rempli de N\n"
 						+ "Si le joueur ne peut pas jouer sur le morpion assigné par le joueur précédent, car celui ci est plein \n"
 						+ "alors, il devra choisir le morpion sur lequel il veut jouer\n");
+		System.out.println("L'ordinateur vous dira dans quel morpion jouer. Vous devrez entrer un num�ro entre 1 et 9, les cases se situeront selon ce dessin: \n" + 
+				" 1 | 2 | 3 \n" +
+				" 4 | 5 | 6 \n" + 
+				" 7 | 8 | 9 \n");		
 
 		Partie p = new Partie();
 		Joueur j1 = new Joueur('X');
