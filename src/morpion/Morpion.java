@@ -43,81 +43,53 @@ public class Morpion {
 	}
 
 	public boolean isFini() {
-		char[] test = this.getPetitMorpion();
-		if (test[0] != ' ' && test[0] == test[3] && test[0] == test[6]) { // Ligne
-																			// verticale
-																			// de
-																			// gauche
+		char[] test = this.petitMorpion;
+		if (test[0] != ' ' && test[0] == test[3] && test[0] == test[6]) {
+			// Ligne verticale de gauche
 			this.setFini(true);
-			this.setGagnant(test[0]);
+			remplir(this.petitMorpion, test[0]);
 			return true;
-		} else if (test[0] != ' ' && test[0] == test[1] && test[0] == test[2]) { // Ligne
-																					// horizontale
-																					// du
-																					// haut
+		} else if (test[0] != ' ' && test[0] == test[1] && test[0] == test[2]) {
+			// Ligne horizontale du haut
 			this.setFini(true);
-			this.setGagnant(test[0]);
+			remplir(this.petitMorpion, test[0]);
 			return true;
-		} else if (test[0] != ' ' && test[4] == test[0] && test[0] == test[8]) { // Ligne
-																					// diagonale
-																					// de
-																					// haut
-																					// gauche
-																					// vers
-																					// bas
-																					// droite
+		} else if (test[0] != ' ' && test[4] == test[0] && test[0] == test[8]) {
+			// Ligne diagonale de haut gauche vers bas droite
 			this.setFini(true);
-			this.setGagnant(test[0]);
+			remplir(this.petitMorpion, test[0]);
 			return true;
-		} else if (test[1] != ' ' && test[1] == test[4] && test[1] == test[7]) { // Ligne
-																					// verticale
-																					// du
-																					// milieu
+		} else if (test[1] != ' ' && test[1] == test[4] && test[1] == test[7]) {
+			// Ligne verticale du milieu
 			this.setFini(true);
-			this.setGagnant(test[1]);
+			remplir(this.petitMorpion, test[1]);
 			return true;
-		} else if (test[2] != ' ' && test[2] == test[5] && test[2] == test[8]) { // Ligne
-																					// verticale
-																					// de
-																					// droite
+		} else if (test[2] != ' ' && test[2] == test[5] && test[2] == test[8]) {
+			// Ligne verticale de droite
 			this.setFini(true);
-			this.setGagnant(test[2]);
+			remplir(this.petitMorpion, test[2]);
 			return true;
-		} else if (test[6] != ' ' && test[6] == test[7] && test[6] == test[8]) { // Ligne
-																					// horizontale
-																					// du
-																					// bas
+		} else if (test[6] != ' ' && test[6] == test[7] && test[6] == test[8]) {
+			// Ligne horizontale du bas
 			this.setFini(true);
-			this.setGagnant(test[6]);
+			remplir(this.petitMorpion, test[6]);
 			return true;
-		} else if (test[3] != ' ' && test[3] == test[4] && test[3] == test[5]) { // Ligne
-																					// horizontale
-																					// du
-																					// milieu
+		} else if (test[3] != ' ' && test[3] == test[4] && test[3] == test[5]) {
+			// Ligne horizontale du milieu
 			this.setFini(true);
-			this.setGagnant(test[3]);
+			remplir(this.petitMorpion, test[3]);
 			return true;
-		} else if (test[2] != ' ' && test[2] == test[4] && test[2] == test[6]) { // Derniere
-																					// diago
-																					// (haut
-																					// droite
-																					// ->
-																					// bas
-																					// gauche)
+		} else if (test[2] != ' ' && test[2] == test[4] && test[2] == test[6]) {
+			// Derniere diago (haut droite -> bas gauche)
 			this.setFini(true);
-			this.setGagnant(test[2]);
+			remplir(this.petitMorpion, test[2]);
 			return true;
-		} else {
-			if (isRempli()) {
-				for (int i = 0; i < hauteur * largeur; i++) {
-					petitMorpion[i] = 'N';
-				}
+		} else if (isRempli()) {
+				remplir(this.petitMorpion, 'N');
 				return true;
-			} else {
+		} else {
 				return false;
-			}
 		}
-
 	}
 
 	public boolean isRempli() {
@@ -128,6 +100,13 @@ public class Morpion {
 			}
 		}
 		return true;
+	}
+
+	public void remplir(char[] morpion, char c) {
+		for (int i = 0; i < morpion.length; i++) {
+			morpion[i] = c;
+		}
+		this.setGagnant(c);
 	}
 
 	public void setFini(boolean fini) {
