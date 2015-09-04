@@ -26,7 +26,7 @@ public class Partie {
 				System.out.println("saisir un entier");
 			}
 			if (i < 1 || i > 9) {
-				System.out.println("saisir un entier compris entre 0 et 8");
+				System.out.println("saisir un entier compris entre 1 et 9");
 			}
 		}
 		return --i;
@@ -39,20 +39,35 @@ public class Partie {
 	}
 
 	public int choixCase(int plateau) {
-		System.out.println("Vous jouez sur le morpion " + plateau + ""
+		System.out.println("Vous jouez sur le morpion " + (plateau + 1) + ""
 				+ "\nSur quelle case voulez-vous placer votre pion ?\n");
 		return parse();
 	}
 
 	public void tour(Joueur j) {
-		System.out.println("Tour du joueur " + j.getNom());
+		int choix;
+		do {
+			System.out.println("Tour du joueur " + j.getNom());
+			if (last == -1 || m.getTotal()[last].isFini())
+				last = choixPlateau();
 
-		if (last == -1 || m.getTotal()[last].isFini())
-			last = choixPlateau();
+			choix = choixCase(last);
+		
+		} while (!m.getTotal()[last].addChar(choix, j));
+			last = choix;
+	}
+	
+	public void tourIA(IA ia) {
+		int choix;
+		do {
+			System.out.println("Tour de l'IA");
+			if (last == -1 || m.getTotal()[last].isFini())
+				last = ia.choixPlateau();
 
-		int choix = choixCase(last);
-		m.getTotal()[last].addChar(choix, j);
-		last = choix;
+			choix = ia.choixCase();
+		
+		} while (!m.getTotal()[last].addChar(choix, ia));
+			last = choix;
 	}
 
 	public void start(Joueur j1, Joueur j2) {
@@ -65,9 +80,20 @@ public class Partie {
 			}
 		}
 	}
+
+	public void startIA(Joueur j1, IA ia) {
+		while (!m.isFini()) {
+			System.out.println(m.toString());
+			tour(j1);
+			if (!m.isFini()) {
+				System.out.println(m.toString());
+				tourIA(ia);
+			}
+		}
+	}
 	
 	public char checkWinner() {
-			return m.getWinner();
+		return m.getWinner();
 	}
 
 }
